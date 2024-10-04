@@ -1,0 +1,73 @@
+E1
+
+Geschlecht -> categorial (0 u. 1)
+Bestand -> int
+Datum -> Timestamp
+RGSCode -> int
+Altersgruppe -> Anfang/lower_bound u Ende/upper_bound: 0, 19 ; 20, 25
+B0254 -> sortieren? string
+Bezeichnung -> string
+BESTAND -> int
+
+columns we don't use:
+Unnamed 8 -> keine Daten, (nunique, unique zeigt keine Values in der col)
+
+unique values überprüfen: Unerwartetes? Abweichungen?
+no Special cell Content
+gleich viele codes wie Bezeichnungen? -> wenn Unterschiede, wo/wieso? dokumentieren
+
+Multiindex: Datum, RGSCode, RGSName, Geschlecht, Altergruppe ??? ausprobieren
+
+missing values: isnull?, B->Berufsbezeichnung NaN
+B9999;unbestimmt -> missing? oder einfach Antwortmöglichkeit?
+B vs B9999 plotten, Prozentanteil beider Varianten
+HEATMAPS !!!
+Tatsächlich missing values -> drop rows
+
+duplicates: 
+alle columns -> gibt es Dups?
+ohne Bestand -> gibt es Dups? tatsächliche Duplikate oder nicht?
+
+shape: ist ok, vllt. Multiindex zurücksetzen um besser zu plotten?
+
+als Excel exportieren
+
+Show dtypes, unique values + Counts, Alter range, median (für upper + lower gemeinsam oder getrennt?)
+
+
+E2
+
+Erklärung für jede Col: was sagt sie aus/ welche daten stehen hier?
+
+Correlationen zwischen Cols?
+Verteilungen
+Gruppierungen
+
+groupby(Datum)[Bestand].sum()
+pro jahr groupby(RGSName)[Bestand].sum(), gesamt für alle jahre
+pro jahr groupby(Bezeichnung)[Bestand].sum()
+pro jahr groupby(Geschlecht)[Bestand].sum(), gesamt für alle jahre
+pro jahr groupby(Altersgruppe)[Bestand].sum(), gesamt für alle jahre
+
+pro jahr groupby(Datum)[Bezeichnung].value_counts(), gesamt für alle jahre
+pro jahr groupby(Geschlecht)[Altersgruppe].value_counts(), gesamt für alle jahre
+
+top 10 Jobs with most bestand !!!
+Jobs mit wenigstem Bestand
+
+keine Outlier weil keine Numerische Daten (Job vs. Altersgruppe) 
+
+columns entfernen, die keine info für uns enthalten (Bezeichnungen als key value pairs in ein dict und as df entfernen)
+
+geodataframe -> RGSCode nach Bundesland, 1?? = Burgenland, 2?? = Kärnten
+Geodata von Bungesländern finden u. joinen https://github.com/ginseng666/GeoJSON-TopoJSON-Austria/blob/master/2021/simplified-95/laender_95_geo.json?short_path=7459b71
+
+
+Hypothese: 
+Gibt es Trends wann welche Jobs beliebter sind?
+Unterschiede Jobs Wien und andere BL über die Jahre / in einem Jahr?
+Gibt es Berufe, die während COVID (2020, 2021) beliebter waren als in anderen Jahren?
+Gibt es signifikante Unterschiede in den BL, welches Geschlecht welche berufe macht? (ganz Österreich, Wien vs. BL)
+Unterschiede im Beruf zwischen Altersgruppen?
+Gibt es an Orten mit Seen/Flüssen mehr Fischer?
+Gibt es in Wien mehr Leute unter 25 die an AMS Kursen teilnehmen als in anderen BL?
