@@ -6,13 +6,14 @@ Authors: Marlis Tiefengraber, Lorenz Duelli, Oliver Miniszewski, Lorenz Flich, C
 
 Repository link: https://github.com/marlis-t/DEE_AMS_Project
 
-The data acquisition, the analysis and the hypotheses can be found in the Jupyter Notebook file *prj01.ipynb*.
+The data acquisition, the analysis and the hypotheses can be found in the Jupyter Notebook file *Arbeitsmarkt_DEE_Project.ipynb*.
 
 Before executing the notebook, the following Files have to be in the same directory:
 1. Bestand_SC_Alter_Berufswunsch_RGS.csv
 2. clean_data.csv
 3. merged_data.csv
 4. 24-598_AMS-Berufssystematik_Stand_05-2024.xlsx
+5. laender_95_geo.json
 
 This is because their contents are read during the notebook's runtime.
 
